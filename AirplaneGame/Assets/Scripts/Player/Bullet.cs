@@ -14,7 +14,17 @@ public class Bullet : MonoBehaviour
             ScoreManager.Instance.AddScore();
 
             Destroy(collision.gameObject);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+
+            gameObject.SetActive(false);
+        }
+
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            gameObject.SetActive(false);
+
+            PlayerFire pf = GameObject.Find("Player").GetComponent<PlayerFire>();
+            pf.bulletPool.Add(gameObject);
         }
     }
 
@@ -26,6 +36,11 @@ public class Bullet : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        gameObject.SetActive(false);
+
+        PlayerFire pf = GameObject.Find("Player").GetComponent<PlayerFire>();
+        pf.bulletPool.Add(gameObject);
     }
 }

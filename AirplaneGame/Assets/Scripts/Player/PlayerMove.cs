@@ -8,6 +8,8 @@ public class PlayerMove : MonoBehaviour
     Rigidbody rigid;
 
     public Vector2 margin;
+
+    public Joystick joyStick;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +22,16 @@ public class PlayerMove : MonoBehaviour
         float Hinput = Input.GetAxis("Horizontal");
         float Vinput = Input.GetAxis("Vertical");
 
-        if(Hinput != 0 || Vinput != 0)
+        if(Hinput == 0 && Vinput == 0)
         {
-            rigid.velocity = new Vector3(Hinput * speed + Time.deltaTime, Vinput * speed + Time.deltaTime, 0f);
+            Hinput = joyStick.Horizontal;
+            Vinput = joyStick.Vertical;
         }
+
+        //if(Hinput != 0 || Vinput != 0)
+        //{
+        rigid.velocity = new Vector3(Hinput * speed + Time.deltaTime, Vinput * speed + Time.deltaTime, 0f);
+        //}
 
         Vector3 position = Camera.main.WorldToViewportPoint(transform.position);
         position.x = Mathf.Clamp(position.x, 0.0f + margin.x, 1.0f - margin.x);

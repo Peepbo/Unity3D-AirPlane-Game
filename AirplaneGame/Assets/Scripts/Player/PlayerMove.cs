@@ -9,49 +9,49 @@ public class PlayerMove : MonoBehaviour
 
     public Vector2 margin;
 
-    public Joystick joyStick;
-
     public Animator anim;
     float animCount = 0;
     // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        anim = transform.Find("DragonSoulEaterRedPBR").GetComponent<Animator>();
+        anim = transform.Find("Toon Chicken").GetComponent<Animator>();
     }
 
     public void FireAnimation()
     {
-        anim.SetBool("isFire", true);
+        //anim.SetBool("isFire", true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(anim.GetBool("isFire"))
-        {
-            print(animCount);
-            animCount += Time.deltaTime;
-
-            if(animCount > 0.6f)
-            {
-                anim.SetBool("isFire", false);
-                animCount = 0;
-            }
-        }
-
-        float Hinput = Input.GetAxis("Horizontal");
-        float Vinput = Input.GetAxis("Vertical");
-
-        if (Hinput == 0 && Vinput == 0)
-        {
-            Hinput = joyStick.Horizontal;
-            Vinput = joyStick.Vertical;
-        }
-
-        //if(Hinput != 0 || Vinput != 0)
+        //if(anim.GetBool("isFire"))
         //{
-        rigid.velocity = new Vector3(Hinput * speed + Time.deltaTime, Vinput * speed + Time.deltaTime, 0f);
+        //    print(animCount);
+        //    animCount += Time.deltaTime;
+
+        //    if(animCount > 0.6f)
+        //    {
+        //        anim.SetBool("isFire", false);
+        //        animCount = 0;
+        //    }
+        //}
+
+        //float Hinput = Input.GetAxis("Horizontal");
+        //float Vinput = Input.GetAxis("Vertical");
+
+        //if (Hinput == 0 && Vinput == 0)
+        //{
+        //    Hinput = joyStick.Horizontal;
+        //    Vinput = joyStick.Vertical;
+        //}
+
+
+
+        ////if(Hinput != 0 || Vinput != 0)
+        ////{
+        //rigid.velocity = new Vector3(Hinput * speed + Time.deltaTime, Vinput * speed + Time.deltaTime, 0f);
         //}
 
         Vector3 position = Camera.main.WorldToViewportPoint(transform.position);

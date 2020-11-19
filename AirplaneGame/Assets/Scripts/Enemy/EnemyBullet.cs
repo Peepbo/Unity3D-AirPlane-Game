@@ -12,7 +12,11 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                collision.gameObject.GetComponent<PlayerStat>().getDamaged(1);
+            }
             Destroy(gameObject);
         }
     }

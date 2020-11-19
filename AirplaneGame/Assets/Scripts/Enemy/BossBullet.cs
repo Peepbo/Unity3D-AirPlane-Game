@@ -9,7 +9,12 @@ public class BossBullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
-        Destroy(collision.gameObject);
+
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerStat>().getDamaged(1);
+        }
+        //Destroy(collision.gameObject);
     }
 
     // Update is called once per frame

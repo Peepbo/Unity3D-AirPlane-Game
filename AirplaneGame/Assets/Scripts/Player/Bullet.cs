@@ -36,8 +36,6 @@ public class Bullet : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        //Destroy(gameObject);
-
         gameObject.SetActive(false);
 
         PlayerFire pf = GameObject.Find("Player").GetComponent<PlayerFire>();

@@ -13,7 +13,7 @@ public class PlayerFire : MonoBehaviour
     public AudioClip shotSound;
 
     //이펙트
-    public GameObject effect;
+    //public GameObject effect;
 
     //오브젝트 풀링
     int poolSize = 5;
@@ -31,7 +31,7 @@ public class PlayerFire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AtkPos = transform.Find("AtkPos");
+        AtkPos = GameObject.Find("AtkPos").transform;
 
         //오브젝트 풀링 초기화
         InitObjectPooling();
@@ -84,8 +84,9 @@ public class PlayerFire : MonoBehaviour
 
 
         //Instantiate(Bullet, AtkPos.position, Quaternion.identity);
-        audio[0].PlayOneShot(shotSound);
-        Instantiate(effect, AtkPos.position, Quaternion.identity);
+        //audio[0].PlayOneShot(shotSound);
+        //Instantiate(effect, AtkPos.position, Quaternion.Euler(transform.Find("Toon Chicken").eulerAngles));
+        //eft.transform.Rotate(transform.Find("Toon Chicken").eulerAngles);
     }
 
     // Update is called once per frame

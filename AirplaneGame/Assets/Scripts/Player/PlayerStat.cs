@@ -6,20 +6,16 @@ public class PlayerStat : MonoBehaviour
 {
     public int hp = 5;
 
+    public GameObject btn;
+
     public void getDamaged(int damage)
     {
         hp -= damage;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(hp <= 0)
+        {
+            btn.SetActive(true);
+            Destroy(gameObject);
+        }
     }
 }

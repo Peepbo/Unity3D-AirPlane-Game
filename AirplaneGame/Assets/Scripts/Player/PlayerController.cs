@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (go_Player == null) return;
+
         Vector2 value = eventData.position - (Vector2)rect_Background.position;
 
         value = Vector2.ClampMagnitude(value, radius);
@@ -60,6 +62,8 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler,
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (go_Player == null) return;
+
         anim.SetBool("Walk", false);
         anim.SetBool("Run", false);
 
@@ -79,6 +83,6 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler,
     // Update is called once per frame
     void Update()
     {
-        if (isTouch) go_Player.transform.position += movePosition;
+        if (isTouch && go_Player != null) go_Player.transform.position += movePosition;
     }
 }

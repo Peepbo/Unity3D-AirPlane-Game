@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,12 +11,16 @@ public class PlayerMove : MonoBehaviour
     public Vector2 margin;
 
     public Animator anim;
-    float animCount = 0;
+
+    public GameObject[] Chick = new GameObject[2];
+    bool cloneActive = true;
     // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        anim = transform.Find("Toon Chicken").GetComponent<Animator>();
+
+        Chick[0] = GameObject.Find("Toon Chick0");
+        Chick[1] = GameObject.Find("Toon Chick1");
     }
 
     public void FireAnimation()
@@ -26,6 +31,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ChickActive();
         //if(anim.GetBool("isFire"))
         //{
         //    print(animCount);
@@ -58,5 +64,23 @@ public class PlayerMove : MonoBehaviour
         position.x = Mathf.Clamp(position.x, 0.0f + margin.x, 1.0f - margin.x);
         position.y = Mathf.Clamp(position.y, 0.0f + margin.y, 1.0f - margin.y);
         transform.position = Camera.main.ViewportToWorldPoint(position);
+    }
+
+    private void ChickActive()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Chick[0].activeSelf)
+            {
+                Chick[0].SetActive(false);
+                Chick[1].SetActive(false);
+            }
+
+            else
+            {
+                Chick[0].SetActive(true);
+                Chick[1].SetActive(true);
+            }
+        }
     }
 }

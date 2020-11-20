@@ -16,7 +16,7 @@ public class PlayerFire : MonoBehaviour
     //public GameObject effect;
 
     //오브젝트 풀링
-    int poolSize = 5;
+    int poolSize = 10;
     int fireIndex = 0;
 
     //1.배열

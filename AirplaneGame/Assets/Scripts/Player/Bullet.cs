@@ -7,20 +7,17 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 1f;
 
+    public bool isSub = false;
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
+            print("Enemy die");
+
             ScoreManager.Instance.AddScore();
 
             Destroy(collision.gameObject);
-            //Destroy(gameObject);
 
-            gameObject.SetActive(false);
-        }
-
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
             gameObject.SetActive(false);
 
             PlayerFire pf = GameObject.Find("Player").GetComponent<PlayerFire>();
@@ -31,7 +28,12 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        Vector3 newVector = Vector3.zero;
+
+        if (!isSub) newVector = Vector3.up;
+        else newVector = Vector3.forward;
+
+        transform.Translate(newVector * speed * Time.deltaTime);
     }
 
     private void OnBecameInvisible()

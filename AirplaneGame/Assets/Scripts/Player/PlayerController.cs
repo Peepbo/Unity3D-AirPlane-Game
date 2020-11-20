@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler,
     private Vector3 movePosition;
 
     Animator anim;
+
+    Animator[] chickAnim = new Animator[2];
+
     public Transform target;
 
     public void OnDrag(PointerEventData eventData)
@@ -34,8 +37,27 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler,
         //print(distance);
 
         anim.SetBool("Walk", true);
-        if (distance > 0.9f) anim.SetBool("Run", true);
-        else anim.SetBool("Run", false);
+
+        chickAnim[0].SetBool("Walk", true);
+        chickAnim[1].SetBool("Walk", true);
+
+        if (distance > 0.9f)
+        {
+            anim.SetBool("Run", true);
+
+            chickAnim[0].SetBool("Run", true);
+            chickAnim[1].SetBool("Run", true);
+        }
+
+        else
+        {
+            anim.SetBool("Run", false);
+
+            chickAnim[0].SetBool("Run", false);
+            chickAnim[1].SetBool("Run", false);
+        }
+
+
 
         float rotationDegree = Mathf.Atan2(rect_Joystick.localPosition.y, rect_Joystick.localPosition.x) * Mathf.Rad2Deg;
         //print(rotationDegree);
@@ -67,6 +89,11 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler,
         anim.SetBool("Walk", false);
         anim.SetBool("Run", false);
 
+        chickAnim[0].SetBool("Walk", false);
+        chickAnim[0].SetBool("Run", false);
+        chickAnim[1].SetBool("Walk", false);
+        chickAnim[1].SetBool("Run", false);
+
         isTouch = false;
 
         //saveDistance = 0;
@@ -77,6 +104,10 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler,
     void Start()
     {
         anim = GameObject.Find("Toon Chicken").GetComponent<Animator>();
+
+        chickAnim[0] = GameObject.Find("Toon Chick0").GetComponent<Animator>();
+        chickAnim[1] = GameObject.Find("Toon Chick1").GetComponent<Animator>();
+
         radius = rect_Background.rect.width * 0.5f;
     }
 

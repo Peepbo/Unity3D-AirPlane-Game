@@ -11,11 +11,6 @@ public class CloneFire : MonoBehaviour
     Transform atkPos;
     public GameObject parent;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
-
     // Start is called before the first frame update
     void Start()
     {

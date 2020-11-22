@@ -6,15 +6,9 @@ public class BossBullet : MonoBehaviour
 {
     public float speed = 10.0f;
 
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
     {
-        Destroy(gameObject);
-
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerStat>().getDamaged(1);
-        }
-        //Destroy(collision.gameObject);
+        Destroy(gameObject, 3f);
     }
 
     // Update is called once per frame

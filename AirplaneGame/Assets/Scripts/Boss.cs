@@ -13,6 +13,20 @@ public class Boss : MonoBehaviour
     float curTime1 = 0.0f;
     public int bulletMax = 10;
 
+    public int hp = 20;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "PlayerBullet")
+        {
+            other.GetComponent<Bullet>().EftPlay();
+            Destroy(other.gameObject);
+            hp -= 1;
+
+            if(hp <= 0) Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

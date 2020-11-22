@@ -8,6 +8,20 @@ public class PlayerStat : MonoBehaviour
 
     public GameObject btn;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="EnemyBullet")
+        {
+            getDamaged(1);
+            Destroy(other.gameObject);
+        }
+
+        if (other.tag == "Enemy")
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
     public void getDamaged(int damage)
     {
         hp -= damage;

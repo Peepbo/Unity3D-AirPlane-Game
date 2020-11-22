@@ -6,29 +6,24 @@ public class EnemyMove : MonoBehaviour
 {
     public float speed = 5f;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(other.tag == "PlayerBullet")
         {
-            collision.gameObject.GetComponent<PlayerStat>().getDamaged(1);
+            other.GetComponent<Bullet>().EftPlay();
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        Destroy(gameObject, 10f);
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.down * speed * Time.deltaTime);
-    }
-
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
     }
 }

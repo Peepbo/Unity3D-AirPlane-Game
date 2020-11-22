@@ -8,26 +8,16 @@ public class EnemyFire : MonoBehaviour
     Transform AtkPos;
 
     float count;
-    public float CreateTime = 1f;
+    public float CreateTime = 0.5f;
 
-    bool isFind;
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player") isFind = true;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player") isFind = false;
-    }
+    EnemyFind eF;
 
     // Start is called before the first frame update
     void Start()
-    {
-        isFind = false;
-
+    { 
         AtkPos = transform.Find("AtkPos").transform;
+
+        eF = transform.Find("AtkPos").GetComponent<EnemyFind>();
     }
 
     // Update is called once per frame
@@ -37,7 +27,7 @@ public class EnemyFire : MonoBehaviour
 
         if(count > CreateTime)
         {
-            if (isFind == false) return;
+            if (eF.check == false) return;
 
             if (GameObject.Find("Player") == null) return;
 

@@ -51,39 +51,39 @@ public class PlayerFire : MonoBehaviour
         //}
 
         //2.리스트
-        bulletPool = new List<GameObject>();
+        //bulletPool = new List<GameObject>();
 
-        for (int i = 0; i < poolSize; i++)
-        {
-            GameObject _bullet = Instantiate(Bullet);
-            _bullet.SetActive(false);
-            bulletPool.Add(_bullet);
-        }
+        //for (int i = 0; i < poolSize; i++)
+        //{
+        //    GameObject _bullet = Instantiate(Bullet);
+        //    _bullet.SetActive(false);
+        //    bulletPool.Add(_bullet);
+        //}
     }
 
     public void bulletFire()
     {
 
-        if (bulletPool.Count > 0)
-        {
-            GameObject _bullet = bulletPool[0];
-            _bullet.SetActive(true);
-            bulletPool[fireIndex].transform.position = AtkPos.position;
-            bulletPool[fireIndex].transform.up = AtkPos.up;
-            //오브젝트 풀에서 빼준다
-            bulletPool.RemoveAt(0);
-            //bulletPool.Remove(_bullet);
-        }
+        //if (bulletPool.Count > 0)
+        //{
+        //    GameObject _bullet = bulletPool[0];
+        //    _bullet.SetActive(true);
+        //    bulletPool[fireIndex].transform.position = AtkPos.position;
+        //    bulletPool[fireIndex].transform.up = AtkPos.up;
+        //    //오브젝트 풀에서 빼준다
+        //    bulletPool.RemoveAt(0);
+        //    //bulletPool.Remove(_bullet);
+        //}
 
-        else // 오브젝트풀이 비어서 오브젝트가 하나도 없으니 풀크기를 키워줌
-        {
-            GameObject _bullet = Instantiate(Bullet);
-            _bullet.SetActive(false);
-            bulletPool.Add(_bullet);
-        }
+        //else // 오브젝트풀이 비어서 오브젝트가 하나도 없으니 풀크기를 키워줌
+        //{
+        //    GameObject _bullet = Instantiate(Bullet);
+        //    _bullet.SetActive(false);
+        //    bulletPool.Add(_bullet);
+        //}
 
 
-        //Instantiate(Bullet, AtkPos.position, Quaternion.identity);
+        Instantiate(Bullet, AtkPos.position, Quaternion.Euler(transform.Find("Toon Chicken").eulerAngles));
         //audio[0].PlayOneShot(shotSound);
         //Instantiate(effect, AtkPos.position, Quaternion.Euler(transform.Find("Toon Chicken").eulerAngles));
         //eft.transform.Rotate(transform.Find("Toon Chicken").eulerAngles);
